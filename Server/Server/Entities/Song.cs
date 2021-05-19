@@ -11,8 +11,9 @@ namespace Server.Entities
         public string Title { get; set; }
         public float Duration { get; set; }
         public DateTime ProductionDate { get; set; }
-        public int PerformerId { get; set; }
 
+
+        public int PerformerId { get; set; }
         public virtual Performer Performer { get; set; }
 
        

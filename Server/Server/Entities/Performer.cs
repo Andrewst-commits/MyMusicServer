@@ -13,7 +13,14 @@ namespace Server.Entities
         public string LastName { get; set; }
         public DateTime BirthDate { get; set; }
 
-        public virtual List<User> Users { get; set; } = new List<User>();
-        public virtual List<Song> Songs { get; set; } = new List<Song>();
+        public virtual ICollection<User> Users { get; set; } 
+        public virtual ICollection<Song> Songs { get; set; } 
+
+        public Performer(List<User> users, List<Song> songs)
+        {
+            Users = new List<User>();
+            Songs = new List<Song>();
+        }
+
     }
 }

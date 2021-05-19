@@ -16,7 +16,7 @@ namespace Server.Models
             LastName = user.LastName;
             Age = BirthDate.Year - DateTime.Now.Year;
             Performers = user.Performers
-                .Select(c => new PerformerDto(c)) ///???
+                .Select(c => new PerformerDto(c)) 
                 .ToList();
         }
 
@@ -26,8 +26,6 @@ namespace Server.Models
         public string LastName { get; set; }
         public DateTime BirthDate { get; set; }
         public int Age { get; set; }
-
-        public virtual List<SongDto> Songs { get; set; }
         public virtual List<PerformerDto> Performers { get; set; }
     }
 }

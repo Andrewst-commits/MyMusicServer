@@ -1,4 +1,5 @@
-﻿using Server.Models;
+﻿using Server.Entities;
+using Server.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace Server.Models
 {
     public class SongDto
     {
-        public SongDto(SongDto song)
+        public SongDto(Song song)
         {
             Title = song.Title;
             Duration = song.Duration;
@@ -18,7 +19,6 @@ namespace Server.Models
         public string Title { get; set; }
         public float Duration { get; set; }
         public DateTime ProductionDate { get; set; }
-
-        public virtual PerformerDto Performer { get; set; }
+        public int PerformerId { get; set; }
     }
 }

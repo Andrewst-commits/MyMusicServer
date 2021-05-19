@@ -27,7 +27,6 @@ namespace Server.Models
         public string Surname { get; set; }
         public string LastName { get; set; }
         public DateTime BirthDate { get; set; }
-
         public virtual List<SongDto> Songs { get; set; }
     }
 }
