@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Server</name>
+    </assembly>
+    <members>
+        <member name="M:Server.Controllers.UserController.GetUserByIdAsync(System.Int32)">
+            <summary>
+            Получить пользователя
+            </summary>
+            <param name="id"></param>
+            <response code = "200"> Пользователь найден </response>
+            <response code = "404"> Пользователь не найден </response>
+            <returns></returns>
+        </member>
+        <member name="M:Server.Controllers.UserController.AddUserAsync(System.String,System.String,System.String,System.DateTime)">
+            <summary>
+            Добавить нового пользователя
+            </summary>
+            <param name="name"> Имя</param>
+            <param name="surname"> Фамилия</param>
+            <param name="lastName"> Отчество</param>
+            <param name="birthDate"> Дата рождения</param>
+            <response code = "200"> Пользователь успешно добавлен </response>
+            <response code = "500"> Ошибка сервера </response>
+            <returns></returns>
+        </member>
+        <member name="M:Server.Controllers.UserController.UpdateUserInfAsync(System.Int32,System.String,System.String,System.String,System.DateTime)">
+            <summary>
+            Изменить информацию о пользователе
+            </summary>
+            <param name="id"></param>
+            <param name="newName"></param>
+            <param name="newSurname"></param>
+            <param name="newLastName"></param>
+            <param name="newBrthDate"></param>
+            <response code = "200"> Информация успешно обновлена </response>
+            <response code = "404"> Пользователь не найден </response>
+            <response code = "500"> Ошибка сервера </response>
+            <returns></returns>
+        </member>
+        <member name="M:Server.Controllers.UserController.DeleteUserByIdAsync(System.Int32)">
+            <summary>
+             Удалить пользователя
+            </summary>
+            <param name="id"> </param>
+            <response code = "200"> Пользователь удален </response>
+            <response code = "404"> Пользователь не найден </response>
+            <response code = "500"> Ошибка сервера </response>
+            <returns></returns>   
+        </member>
+        <member name="M:Server.Services.UsersInMS_SQL_ServerRepository.GetUserAsync(System.Int32)">
+            <summary>
+            Извлекаем пользователя из базы данных по id
+            </summary>
+        </member>
+        <member name="M:Server.Services.UsersInMS_SQL_ServerRepository.GetUserDtoAsync(System.Int32)">
+            <summary>
+            Посылаем пользователю информацию через Dto-объект
+            </summary>
+        </member>
+        <member name="M:Server.Services.UsersInMS_SQL_ServerRepository.AddUserAsync(System.String,System.String,System.String,System.DateTime)">
+            <summary>
+            Добавляем нового пользователя
+            </summary>
+        </member>
+        <member name="M:Server.Services.UsersInMS_SQL_ServerRepository.PutUserAsync(System.Int32,System.String,System.String,System.String,System.DateTime)">
+            <summary>
+            Изменяем параметры пользователя по id
+            </summary>
+        </member>
+        <member name="M:Server.Services.UsersInMS_SQL_ServerRepository.DeleteUserAsync(System.Int32)">
+            <summary>
+            Удаляем пользователя по id
+            </summary>
+        </member>
+    </members>
+</doc>
