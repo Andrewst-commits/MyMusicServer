@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -30,10 +31,16 @@ namespace Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<MusicServerDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddScoped<IUsers, UsersInMS_SQL_ServerRepository>();
+            var connection = Configuration.GetConnectionString("DefaultConnection");
+            
+            services.AddDbContext<MusicServerDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IUsers, UsersInMsSqlServerRepository>();
+            services.AddScoped<ISongs, SongsInMsSQlServerRepository>();
+            services.AddScoped<IPerformers, PerformersInMsSqlServerRepository>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

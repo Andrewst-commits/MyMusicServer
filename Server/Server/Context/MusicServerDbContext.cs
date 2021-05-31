@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Server.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,10 @@ namespace Server.Context
         public MusicServerDbContext(DbContextOptions<MusicServerDbContext> options)
             : base(options)
         {
+           Database.EnsureDeleted();
+           Database.EnsureCreated();
         }
 
-        public virtual DbSet<Listening> Listenings { get; set; }
         public virtual DbSet<Performer> Performers { get; set; }
         public virtual DbSet<Song> Songs { get; set; }
         public virtual DbSet<User> Users { get; set; }
@@ -27,7 +29,7 @@ namespace Server.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=laptop-o5fg9v0m\\sqlexpress;Database=CodeFirstDb;Trusted_Connection=True;");
+               
             }
         }
 
@@ -35,41 +37,36 @@ namespace Server.Context
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Cyrillic_General_CI_AS");
 
-            modelBuilder.Entity<Listening>(entity =>
-            {
-                entity.HasKey(e => new { e.PerformersPerformerId, e.UsersUserId });
-
-                entity.ToTable("Listening");
-
-                entity.HasIndex(e => e.UsersUserId, "IX_Listening_UsersUserId");
-
-                entity.HasOne(d => d.PerformersPerformer)
-                    .WithMany(p => p.Listenings)
-                    .HasForeignKey(d => d.PerformersPerformerId);
-
-                entity.HasOne(d => d.UsersUser)
-                    .WithMany(p => p.Listenings)
-                    .HasForeignKey(d => d.UsersUserId);
-            });
 
             modelBuilder.Entity<Performer>(entity =>
             {
                 entity.ToTable("Performer");
 
-                entity.Property(e => e.LastName)
+                entity.Property(e => e.NickName)
                     .IsRequired()
-                    .HasMaxLength(50)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LastName)
+                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
-                    .HasMaxLength(30)
+                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Surname)
                     .IsRequired()
-                    .HasMaxLength(50)
+                    .HasMaxLength(100)
                     .IsUnicode(false);
+
+                entity.Property(e => e.BirthDate)
+                    .IsRequired();
+        
+                entity.HasMany(c => c.Users)
+                      .WithMany(c => c.Performers)
+                      .UsingEntity(j => j.ToTable("UserPerformerRealations"));
             });
 
             modelBuilder.Entity<Song>(entity =>
@@ -80,13 +77,28 @@ namespace Server.Context
 
                 entity.Property(e => e.Title)
                     .IsRequired()
-                    .HasMaxLength(50)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DurationMs)
+                    .IsRequired();
+
+                entity.Property(e => e.ProductionDate)
+                    .IsRequired();
+
+                entity.Property(e => e.PerformerNickName)
+                    .IsRequired()
+                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.Performer)
                     .WithMany(p => p.Songs)
                     .HasForeignKey(d => d.PerformerId)
                     .HasConstraintName("SongsPerformer");
+
+                entity.HasMany(d => d.Users)
+                    .WithMany(d => d.Songs)
+                    .UsingEntity(j => j.ToTable("UserSongRealations"));
             });
 
             modelBuilder.Entity<User>(entity =>
@@ -94,19 +106,21 @@ namespace Server.Context
                 entity.ToTable("User");
 
                 entity.Property(e => e.LastName)
-                    .IsRequired()
-                    .HasMaxLength(50)
+                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
-                    .HasMaxLength(30)
+                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Surname)
                     .IsRequired()
-                    .HasMaxLength(50)
+                    .HasMaxLength(100)
                     .IsUnicode(false);
+
+                entity.Property(e => e.BirthDate)
+                    .IsRequired();
             });
 
             OnModelCreatingPartial(modelBuilder);

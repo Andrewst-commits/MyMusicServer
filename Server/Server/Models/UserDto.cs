@@ -14,18 +14,16 @@ namespace Server.Models
             Name = user.Name;
             Surname = user.Surname;
             LastName = user.LastName;
-            Age = BirthDate.Year - DateTime.Now.Year;
+            BirthDate = user.BirthDate;
             Performers = user.Performers
                 .Select(c => new PerformerDto(c)) 
                 .ToList();
         }
 
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string LastName { get; set; }
         public DateTime BirthDate { get; set; }
-        public int Age { get; set; }
         public virtual List<PerformerDto> Performers { get; set; }
     }
 }

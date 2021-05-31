@@ -9,16 +9,19 @@ namespace Server.Models
 {
     public class SongDto
     {
+        
         public SongDto(Song song)
         {
             Title = song.Title;
-            Duration = song.Duration;
+            DurationMs = song.DurationMs;
             ProductionDate = song.ProductionDate;
         }
-        public int Id { get; set; }
         public string Title { get; set; }
-        public float Duration { get; set; }
+        public long DurationMs { get; set; } 
         public DateTime ProductionDate { get; set; }
-        public int PerformerId { get; set; }
+        public TimeSpan Duration => TimeSpan.FromMilliseconds(DurationMs);
+
+
+        //Следует ли ставить сюда аттрибуты валидации, например, для более быстрого отслеживания багов?
     }
 }

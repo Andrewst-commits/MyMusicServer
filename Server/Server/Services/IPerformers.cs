@@ -1,18 +1,17 @@
 ﻿using Server.Entities;
+using Server.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Server.Services
-{ 
+{
     public interface IPerformers
     {
-        Task<Performer> GetPerformerAsync(int id);
-        Task<Performer> AddPerformerAsync(string name, string surname,
-            string lastName, DateTime birthDate);
-        Task<bool> PutPerformerAsync(int id, string newName, string newSurname,
-            string newLastName, DateTime newBirthDate);
-        Task<bool> DeletePerformerAsync(int id);
+        Task<Performer> AddPerformer(PerfomerCreateDto perfomerCreateDto);
+        Task<bool> DeletePerformer(Guid performerId);
+        Task<List<Performer>> GetAllPerformers();
+        Task<Performer> GetPerformer(Guid performerId);
+        Task<bool> UpdatePerformer(Guid performerId, PerfomerCreateDto perfomerCreateDto);
     }
 }
