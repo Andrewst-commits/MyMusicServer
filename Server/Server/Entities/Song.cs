@@ -12,17 +12,16 @@ namespace Server.Entities
         public string Title { get; set; }
         public long DurationMs { get; set; }
         public DateTime ProductionDate { get; set; }
-        public string PerformerNickName { get; set; }
         public bool IsDeleted { get; set; }
 
 
         public Guid PerformerId { get; set; }
         public virtual Performer Performer { get; set; }
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<Account> Users { get; set; }
 
         public Song()
         {
-            Users = new List<User>();
+            Users = new List<Account>();
             IsDeleted = false;
         }
 

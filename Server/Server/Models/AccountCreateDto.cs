@@ -1,4 +1,5 @@
-﻿using Server.Attributes;
+﻿
+using Server.Attributes;
 using Server.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,32 +9,42 @@ using System.Threading.Tasks;
 
 namespace Server.Models
 {
-    public class UserCreateDto
-    { // добавить XMl
-
+    public class AccountCreateDto
+    {
+        /// <summary>
+        /// имя
+        /// </summary>
         [Required]
         [OnlyLatin(ErrMes = "Only latin letters")]
         [LengthAttribute(MaxLen = 30, MinLen = 1, ErrMes = "Langth must be")]
         public string NameDto { get; set; }
 
+        /// <summary>
+        /// фамилия
+        /// </summary>
         [Required]
         [OnlyLatin(ErrMes = "Only latin letters")]
         [LengthAttribute(MaxLen = 70, MinLen = 1, ErrMes = "Langth must be")]
         public string SurnameDto { get; set; }
 
-        [Required]
+        /// <summary>
+        /// отчество
+        /// </summary>
         [OnlyLatin(ErrMes = "Only latin letters")]
         [LengthAttribute(MaxLen = 70, MinLen = 1, ErrMes = "Langth must be")]
         public string LastNameDto { get; set; }
 
+
+        /// <summary>
+        /// дата рождения
+        /// </summary>
         [Required]
         public string BirthDateDto { get; set; }
 
-        public async Task<User> ToEntity()
+        public async Task<Account> ToEntity()
         {
             await Task.CompletedTask;
-
-            var user = new User()
+            var account = new Account()
             {
                 Name = NameDto,
                 Surname = SurnameDto,
@@ -41,8 +52,11 @@ namespace Server.Models
                 BirthDate = DateTime.Parse(BirthDateDto),
             };
 
-            return user;
+            return account;
         }
-       
+
     }
 }
+
+
+

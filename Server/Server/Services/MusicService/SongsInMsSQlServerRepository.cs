@@ -14,10 +14,10 @@ namespace Server.Services
     public class SongsInMsSQlServerRepository : ISongs
     {
         private readonly MusicServerDbContext _db;
-        private readonly ILogger<UsersInMsSqlServerRepository> _logger;
+        private readonly ILogger<SongsInMsSQlServerRepository> _logger;
 
         public SongsInMsSQlServerRepository(MusicServerDbContext db,
-            ILogger<UsersInMsSqlServerRepository> logger)
+            ILogger<SongsInMsSQlServerRepository> logger)
         {
             _db = db;
             _logger = logger;
@@ -69,6 +69,7 @@ namespace Server.Services
 
             song = await songCreateDto.ToEntity();
 
+            _db.Songs.Update(song);
             await _db.SaveChangesAsync();
             await _db.DisposeAsync();
 

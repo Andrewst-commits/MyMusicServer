@@ -58,6 +58,7 @@ namespace Server.Services
 
             performer = await perfomerCreateDto.ToEntity();
 
+            _db.Performers.Update(performer);
             await _db.SaveChangesAsync();
             await _db.DisposeAsync();
 
@@ -71,27 +72,12 @@ namespace Server.Services
             if (performer == null) return false;
 
             performer.IsDeleted = true;
-   
+
             await _db.SaveChangesAsync();
             await _db.DisposeAsync();
 
             return true;
         }
-
-        //public async Task<bool> AttachSong(int songId, string nickName)
-        //{
-        //    var song = await _db.Songs.FirstOrDefaultAsync(c => c.SongId == songId);
-
-        //    var performer = await _db.Performers.FirstOrDefaultAsync(c => c.NickName == nickName);
-
-        //    if (song == null || performer == null) return false;
-
-        //    performer.Songs.Add(song);
-        //    await _db.SaveChangesAsync();
-        //    await _db.DisposeAsync();
-
-        //    return true;
-        //}
 
     }
 }

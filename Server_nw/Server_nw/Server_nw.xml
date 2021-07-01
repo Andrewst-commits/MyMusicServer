@@ -1,0 +1,317 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Server_nw</name>
+    </assembly>
+    <members>
+        <member name="P:Server_nw.AuthorizationService.DtoModels.CreateDto.BandCreateDto.NickNameDto">
+            <summary>
+            название группы
+            </summary>
+        </member>
+        <member name="P:Server_nw.AuthorizationService.DtoModels.CreateDto.BandCreateDto.MemberNumDto">
+            <summary>
+            количество участников
+            </summary>
+        </member>
+        <member name="P:Server_nw.AuthorizationService.DtoModels.CreateDto.BandCreateDto.RegistrationDateDto">
+            <summary>
+            дата регистрации
+            </summary>
+        </member>
+        <member name="P:Server_nw.AuthorizationService.DtoModels.CreateDto.BandCreateDto.RoleIdDto">
+            <summary>
+            роль
+            </summary>
+        </member>
+        <member name="P:Server_nw.AuthorizationService.DtoModels.CreateDto.ListenerCreateDto.NickNameDto">
+            <summary>
+            псевдоним
+            </summary>
+        </member>
+        <member name="P:Server_nw.AuthorizationService.DtoModels.CreateDto.ListenerCreateDto.BirthDateDto">
+            <summary>
+            дата рождения
+            </summary>
+        </member>
+        <member name="P:Server_nw.AuthorizationService.DtoModels.CreateDto.ListenerCreateDto.RoleIdDto">
+            <summary>
+            роль
+            </summary>
+        </member>
+        <member name="P:Server_nw.AuthorizationService.DtoModels.CreateDto.LoginModelCreateDto.LoginDto">
+            <summary>
+            логин
+            </summary>
+        </member>
+        <member name="P:Server_nw.AuthorizationService.DtoModels.CreateDto.LoginModelCreateDto.PasswordDto">
+            <summary>
+            пароль
+            </summary>
+        </member>
+        <member name="P:Server_nw.AuthorizationService.DtoModels.CreateDto.MemberCreateDto.NickNameDto">
+            <summary>
+            псевдоним
+            </summary>
+        </member>
+        <member name="P:Server_nw.AuthorizationService.DtoModels.CreateDto.MemberCreateDto.NameDto">
+            <summary>
+            имя
+            </summary>
+        </member>
+        <member name="P:Server_nw.AuthorizationService.DtoModels.CreateDto.MemberCreateDto.SurnameDto">
+            <summary>
+            фамилия
+            </summary>
+        </member>
+        <member name="P:Server_nw.AuthorizationService.DtoModels.CreateDto.MemberCreateDto.LastNameDto">
+            <summary>
+            отчество
+            </summary>
+        </member>
+        <member name="P:Server_nw.AuthorizationService.DtoModels.CreateDto.MemberCreateDto.BirthDateDto">
+            <summary>
+            дата рождения
+            </summary>
+        </member>
+        <member name="P:Server_nw.AuthorizationService.DtoModels.CreateDto.PerformerCreateDto.NickNameDto">
+            <summary>
+            псевдоним
+            </summary>
+        </member>
+        <member name="P:Server_nw.AuthorizationService.DtoModels.CreateDto.PerformerCreateDto.BirthDateDto">
+            <summary>
+            дата рождения
+            </summary>
+        </member>
+        <member name="P:Server_nw.AuthorizationService.DtoModels.CreateDto.PerformerCreateDto.RoleIdDto">
+            <summary>
+            роль
+            </summary>
+        </member>
+        <member name="P:Server_nw.AuthorizationService.DtoModels.CreateDto.RoleCreateDto.NameDto">
+            <summary>
+            название роли
+            </summary>
+        </member>
+        <member name="M:Server_nw.MusicApplication.Controllers.AlbumController.GetAllAlbums">
+            <summary>
+            Получить список альбомов
+            </summary>
+            <response code = "200"> Список получен </response>
+            <response code = "404"> Данных нет </response>
+            <returns></returns>
+        </member>
+        <member name="M:Server_nw.MusicApplication.Controllers.AlbumController.GetAlbum(System.Guid)">
+            <summary>
+            Получить альбом по id
+            </summary>
+            <param name="id"></param>
+            <response code = "200"> Альбом найден </response>
+            <response code = "404"> Альбом не найден </response>
+            <returns></returns>
+            <returns></returns>
+        </member>
+        <member name="M:Server_nw.MusicApplication.Controllers.AlbumController.AddAlbum(Server_nw.MusicService.DtoModels.CreateDto.AlbumCreateDto)">
+            <summary>
+            Добавить новый альбом
+            </summary>
+            <param name="albumCreateDto"></param>
+            /// <response code = "200"> альбом успешно добавлен </response>
+            <response code = "500"> ошибка сервера </response>
+            <returns></returns>
+            <returns></returns>
+        </member>
+        <member name="M:Server_nw.MusicApplication.Controllers.AlbumController.UpdateAlbumInf(System.Guid,Server_nw.MusicService.DtoModels.CreateDto.AlbumCreateDto)">
+            <summary>
+            Изменить информацию об альбоме
+            </summary>
+            <param name="id"></param>
+            <param name="albumCreateDto"></param>
+            <response code = "200"> Информация успешно обновлена </response>
+            <response code = "404"> Альбом не найден </response>
+            <response code = "500"> Ошибка сервера </response>
+            <returns></returns>
+            <returns></returns>
+        </member>
+        <member name="M:Server_nw.MusicApplication.Controllers.AlbumController.DeleteAlbum(System.Guid)">
+            <summary>
+            Удалить альбом по id
+            </summary>
+            <param name="id"></param>
+            <response code = "200"> Альбом удален </response>
+            <response code = "404"> Альбои не найден </response>
+            <response code = "500"> Ошибка сервера </response>
+            <returns></returns>
+        </member>
+        <member name="M:Server_nw.MusicApplication.Controllers.AlbumController.RestoreAlbum(System.Guid)">
+            <summary>
+             Восстановить албом по id
+            </summary>
+            <param name="id"></param>
+            <response code = "200"> Альбом восстановлен </response>
+            <response code = "404"> Альбом не найден </response>
+            <response code = "500"> Ошибка сервера </response>
+            <returns></returns>   
+        </member>
+        <member name="M:Server_nw.MusicApplication.Controllers.AlbumController.GetAllDeletedAlbums">
+            <summary>
+            Получить список удаленных альбомов
+            </summary>
+            <response code = "200"> Список получен </response>
+            <response code = "404"> Данных нет </response>
+            <returns></returns>
+        </member>
+        <member name="M:Server_nw.MusicApplication.Controllers.BandController.AttachMusicSongToBand(System.Guid,System.Guid)">
+            <summary>
+            Прикрепить песню к группе 
+            </summary>
+            <param name="bandId"></param>
+            <param name="songId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Server_nw.MusicApplication.Controllers.BandController.AttachAlbumToBand(System.Guid,System.Guid)">
+            <summary>
+            Прикрепить альбом к группе 
+            </summary>
+            <param name="bandId"></param>
+            <param name="albumId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Server_nw.MusicApplication.Controllers.ListenerController.AttachMusicSongToListener(System.Guid,System.Guid)">
+            <summary>
+            Прикрепить песню к слушателю 
+            </summary>
+            <param name="listenerId"></param>
+            <param name="songId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Server_nw.MusicApplication.Controllers.ListenerController.AttachAlbumToListener(System.Guid,System.Guid)">
+            <summary>
+            Прикрепить альбом к слушателю
+            </summary>
+            <param name="listenerId"></param>
+            <param name="albumId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Server_nw.MusicApplication.Controllers.PerformerController.AttachMusicSongToPerformer(System.Guid,System.Guid)">
+            <summary>
+            Прикрепить песню к исполнителю
+            </summary>
+            <param name="performerId"></param>
+            <param name="songId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Server_nw.MusicApplication.Controllers.PerformerController.AttachAlbumToPerformer(System.Guid,System.Guid)">
+            <summary>
+            Прикрепить альбом к исполнителю
+            </summary>
+            <param name="performerId"></param>
+            <param name="albumId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Server_nw.MusicApplication.Controllers.SongController.GetAllSongs">
+            <summary>
+            Получить список песен
+            </summary>
+            <response code = "200"> Список получен </response>
+            <response code = "404"> Данных нет </response>
+            <returns></returns>
+        </member>
+        <member name="M:Server_nw.MusicApplication.Controllers.SongController.GetSong(System.Guid)">
+            <summary>
+            Получить песню по id
+            </summary>
+            <param name="id"></param>
+            <response code = "200"> Песня найдена </response>
+            <response code = "404"> Песня не найдена </response>
+            <returns></returns>
+            <returns></returns>
+        </member>
+        <member name="M:Server_nw.MusicApplication.Controllers.SongController.AddSong(Server_nw.MusicService.DtoModels.CreateDto.SongCreateDto)">
+            <summary>
+            Добавить новую песню
+            </summary>
+            <param name="songCreateDto"></param>
+            /// <response code = "200"> песня успешно добавлена </response>
+            <response code = "500"> ошибка сервера </response>
+            <returns></returns>
+            <returns></returns>
+        </member>
+        <member name="M:Server_nw.MusicApplication.Controllers.SongController.UpdateSongInf(System.Guid,Server_nw.MusicService.DtoModels.CreateDto.SongCreateDto)">
+            <summary>
+            Изменить информацию о песне
+            </summary>
+            <param name="id"></param>
+            <param name="songCreateDto"></param>
+            <response code = "200"> Информация успешно обновлена </response>
+            <response code = "404"> Песня не найдена </response>
+            <response code = "500"> Ошибка сервера </response>
+            <returns></returns>
+            <returns></returns>
+        </member>
+        <member name="M:Server_nw.MusicApplication.Controllers.SongController.DeleteSong(System.Guid)">
+            <summary>
+            Удалить песню по id
+            </summary>
+            <param name="id"></param>
+            <response code = "200"> Песня удалена </response>
+            <response code = "404"> Песня не найдена </response>
+            <response code = "500"> Ошибка сервера </response>
+            <returns></returns>
+        </member>
+        <member name="M:Server_nw.MusicApplication.Controllers.SongController.RestoreSong(System.Guid)">
+            <summary>
+             Восстановить песню по id
+            </summary>
+            <param name="id"></param>
+            <response code = "200"> Песня восстановлен </response>
+            <response code = "404"> Песня не найдена </response>
+            <response code = "500"> Ошибка сервера </response>
+            <returns></returns>   
+        </member>
+        <member name="M:Server_nw.MusicApplication.Controllers.SongController.GetAllDeletedSongs">
+            <summary>
+            Получить список удаленных песен
+            </summary>
+            <response code = "200"> Список получен </response>
+            <response code = "404"> Данных нет </response>
+            <returns></returns>
+        </member>
+        <member name="P:Server_nw.MusicService.DtoModels.CreateDto.AlbumCreateDto.NameDto">
+            <summary>
+            название альбома 
+            </summary>
+        </member>
+        <member name="P:Server_nw.MusicService.DtoModels.CreateDto.AlbumCreateDto.ProductionDateDto">
+            <summary>
+            дата выпуска
+            </summary>
+        </member>
+        <member name="P:Server_nw.MusicService.DtoModels.CreateDto.AlbumCreateDto.UserIdDto">
+            <summary>
+            правообладатель
+            </summary>
+        </member>
+        <member name="P:Server_nw.MusicService.DtoModels.CreateDto.SongCreateDto.TitleDto">
+            <summary>
+            название
+            </summary>
+        </member>
+        <member name="P:Server_nw.MusicService.DtoModels.CreateDto.SongCreateDto.DurationMsDto">
+            <summary>
+            длительность (мс)
+            </summary>
+        </member>
+        <member name="P:Server_nw.MusicService.DtoModels.CreateDto.SongCreateDto.ProductionDateDto">
+            <summary>
+            дата выпуска
+            </summary>
+        </member>
+        <member name="P:Server_nw.MusicService.DtoModels.CreateDto.SongCreateDto.UserIdDto">
+            <summary>
+            правообладатель
+            </summary>
+        </member>
+    </members>
+</doc>

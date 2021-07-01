@@ -53,7 +53,7 @@ namespace Server.Controllers
         /// <response code = "200"> Исполнитель найден </response>
         /// <response code = "404"> Исполнитель не найден </response>
         /// <returns></returns>
-        [HttpGet("{nickName}")]
+        [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<PerformerDto>> GetPerformer(Guid id)
@@ -122,5 +122,3 @@ namespace Server.Controllers
     }
 }
 
-//mapper
-// в больших приложения в репозиториях тоже можно возвращать Dto

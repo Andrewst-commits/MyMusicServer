@@ -9,31 +9,21 @@ using System.Threading.Tasks;
 namespace Server.Models
 {
     public class PerfomerCreateDto
-    { // добавить XMl
-
+    { 
+        /// <summary>
+        /// псевдоним
+        /// </summary>
         [Required]
-       // [UniquePerformerNickName(ErrMes = "Such nickname exists")]
         [OnlyLatin(ErrMes = "Only latin letters")]
         [LengthAttribute(MaxLen = 30, MinLen = 1, ErrMes = "Langth must be")]
         public string NickNameDto { get; set; }
 
-        [Required]
-        [OnlyLatin(ErrMes = "Only latin letters")]
-        [LengthAttribute(MaxLen = 50, MinLen = 1, ErrMes = "Langth must be")]
-        public string NameDto { get; set; }
 
+        /// <summary>
+        /// дата регистрации псевдонима
+        /// </summary>
         [Required]
-        [OnlyLatin(ErrMes = "Only latin letters")]
-        [LengthAttribute(MaxLen = 70, MinLen = 1, ErrMes = "Langth must be")]
-        public string SurnameDto { get; set; }
-
-        [Required]
-        [OnlyLatin(ErrMes = "Only latin letters")]
-        [LengthAttribute(MaxLen = 70, MinLen = 1, ErrMes = "Langth must be")]
-        public string LastNameDto { get; set; }
-
-        [Required]
-        public string BirthDateDto { get; set; }
+        public string RegistrationDateDto { get; set; }
 
         public async Task<Performer> ToEntity()
         {
@@ -42,10 +32,7 @@ namespace Server.Models
             var performer = new Performer()
             {
                 NickName = NickNameDto,
-                Name = NameDto,
-                Surname = SurnameDto,
-                LastName = LastNameDto,
-                BirthDate = DateTime.Parse(BirthDateDto)
+                RegistrationDate = DateTime.Parse(RegistrationDateDto)
             };
 
             return performer;

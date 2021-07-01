@@ -4,6 +4,14 @@
         <name>Server</name>
     </assembly>
     <members>
+        <member name="M:Server.Controllers.AccountController.CreateToken(System.String,System.String)">
+            <summary>
+            Авторизоваться  
+            </summary>
+            <param name="login"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
         <member name="M:Server.Controllers.PerformerController.GetAllPerformers">
             <summary>
             Получить всех исполнителей 
@@ -117,12 +125,12 @@
             <response code = "404"> Пользователь не найден </response>
             <returns></returns>
         </member>
-        <member name="M:Server.Controllers.UserController.AddUser(Server.Models.UserCreateDto)">
+        <member name="M:Server.Controllers.UserController.RegisterUser(Server.Models.UserCreateDto)">
             <summary>
-            Добавить нового пользователя
+            Зарегистрировать нового пользователя
             </summary>
             <param name="userCreateDto"></param>
-            <response code = "200"> Пользователь успешно добавлен </response>
+            <response code = "200"> Пользователь успешно зарегистрирован </response>
             <response code = "500"> Ошибка сервера </response>
             <returns></returns>
         </member>
@@ -137,12 +145,12 @@
             <response code = "500"> Ошибка сервера </response>
             <returns></returns>
         </member>
-        <member name="M:Server.Controllers.UserController.AttachMusicPerformerToUser(System.Guid,System.Guid)">
+        <member name="M:Server.Controllers.UserController.AttachMusicSongToUser(System.Guid,System.Guid)">
             <summary>
-            Прикрепить исполнителя к пользователю 
+            Прикрепить песню к пользователю 
             </summary>
             <param name="userId"></param>
-            <param name="performerId"></param>
+            <param name="songId"></param>
             <returns></returns>
         </member>
         <member name="M:Server.Controllers.UserController.DeleteUser(System.Guid)">
@@ -154,6 +162,84 @@
             <response code = "404"> Пользователь не найден </response>
             <response code = "500"> Ошибка сервера </response>
             <returns></returns>   
+        </member>
+        <member name="M:Server.Controllers.UserController.RestoreUser(System.Guid)">
+            <summary>
+             Восстановить пользователя по id
+            </summary>
+            <param name="id"></param>
+            <response code = "200"> Пользователь восстановлен </response>
+            <response code = "404"> Пользователь не найден </response>
+            <response code = "500"> Ошибка сервера </response>
+            <returns></returns>   
+        </member>
+        <member name="M:Server.Controllers.UserController.GetAllDeletedUsers">
+            <summary>
+            Получить список удаленных пользователей
+            </summary>
+            <response code = "200"> Список получен </response>
+            <response code = "404"> Данных нет </response>
+            <returns></returns>
+        </member>
+        <member name="P:Server.Models.PerfomerCreateDto.NickNameDto">
+            <summary>
+            псевдоним
+            </summary>
+        </member>
+        <member name="P:Server.Models.PerfomerCreateDto.RegistrationDateDto">
+            <summary>
+            дата регистрации псевдонима
+            </summary>
+        </member>
+        <member name="P:Server.Models.SongCreateDto.TitleDto">
+            <summary>
+            название
+            </summary>
+        </member>
+        <member name="P:Server.Models.SongCreateDto.DurationMsDto">
+            <summary>
+            длительность
+            </summary>
+        </member>
+        <member name="P:Server.Models.SongCreateDto.ProductionDateDto">
+            <summary>
+            дата выпуска
+            </summary>
+        </member>
+        <member name="P:Server.Models.SongCreateDto.PerformerIdDto">
+            <summary>
+            id исполнителя
+            </summary>
+        </member>
+        <member name="P:Server.Models.UserCreateDto.NameDto">
+            <summary>
+            имя
+            </summary>
+        </member>
+        <member name="P:Server.Models.UserCreateDto.SurnameDto">
+            <summary>
+            фамилия
+            </summary>
+        </member>
+        <member name="P:Server.Models.UserCreateDto.LastNameDto">
+            <summary>
+            отчество
+            </summary>
+        </member>
+        <member name="P:Server.Models.UserCreateDto.BirthDateDto">
+            <summary>
+            дата рождения
+            </summary>
+        </member>
+        <member name="P:Server.Models.UserCreateDto.LoginDto">
+            <summary>
+            логин
+            </summary>
+        </member>
+        <member name="P:Server.Models.UserCreateDto.PasswordDto">
+            <summary>
+            пароль
+            </summary>
         </member>
     </members>
 </doc>

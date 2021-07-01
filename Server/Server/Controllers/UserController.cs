@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Server.Models;
@@ -32,18 +33,20 @@ namespace Server.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<List<UserDto>>> GetAllUsers()
+        public async Task<ActionResult<List<AccountDto>>> GetAllUsers()
         {
             var users = await _users.GetAllUsers();
-            List<UserDto> usersDto = new List<UserDto>();
+            List<AccountDto> usersDto = new List<AccountDto>();
 
             foreach (var user in users)
             {
-                usersDto.Add(new UserDto(user));
+                usersDto.Add(new AccountDto(user));
             }
 
             return Ok(usersDto);
         }
+
+
 
         /// <summary>
         /// Получить пользователя по  id
@@ -55,29 +58,29 @@ namespace Server.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<UserDto>> GetUser(Guid id)
+        public async Task<ActionResult<AccountDto>> GetUser(Guid id)
         {
             var user = await _users.GetUser(id);
 
             if (user == null) return NotFound();
 
-            return new UserDto(user); 
+            return new AccountDto(user);
         }
 
         /// <summary>
-        /// Добавить нового пользователя
+        /// Зарегистрировать нового пользователя
         /// </summary>
         /// <param name="userCreateDto"></param>
-        /// <response code = "200"> Пользователь успешно добавлен </response>
+        /// <response code = "200"> Пользователь успешно зарегистрирован </response>
         /// <response code = "500"> Ошибка сервера </response>
         /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<UserDto>> AddUser([FromBody] UserCreateDto userCreateDto)
+        public async Task<ActionResult<AccountDto>> RegisterUser([FromBody] AccountCreateDto userCreateDto)
         {
-            var user = await _users.AddUser(userCreateDto);
+            var user = await _users.RegisterUser(userCreateDto);
 
-            return new UserDto(user); //Почему не выдало ошибку???!!!!! было Ok(user)
+            return new UserDto(user);
         }
 
 
@@ -93,24 +96,24 @@ namespace Server.Controllers
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<bool>> UpdateUserInf(Guid id, [FromBody] UserCreateDto userCreateDto)
+        public async Task<ActionResult> UpdateUserInf(Guid id, [FromBody] AccountCreateDto userCreateDto)
         {
             var IsUpdated = await _users.UpdateUser(id, userCreateDto);
             return IsUpdated ? Ok() : NotFound();
         }
 
         /// <summary>
-        /// Прикрепить исполнителя к пользователю 
+        /// Прикрепить песню к пользователю 
         /// </summary>
         /// <param name="userId"></param>
-        /// <param name="performerId"></param>
+        /// <param name="songId"></param>
         /// <returns></returns>
-        [HttpPut("{userId}")]
+        [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<bool>> AttachMusicPerformerToUser(Guid userId, Guid performerId)
+        public async Task<ActionResult> AttachMusicSongToUser(Guid userId, Guid songId)
         {
-            var isAttached = await _users.AttachMusicPerformer(userId, performerId);
+            var isAttached = await _users.AttachMusicSong(userId, songId);
             return isAttached ? Ok() : NotFound();
         }
 
@@ -123,15 +126,65 @@ namespace Server.Controllers
         /// <response code = "500"> Ошибка сервера </response>
         /// <returns></returns>   
         [HttpDelete]
+        [Authorize(Roles = "admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<bool>> DeleteUser(Guid id)
+        public async Task<ActionResult> DeleteUser(Guid id)
         {
             var isDeleted = await _users.DeleteUser(id);
             return isDeleted ? Ok() : NotFound();
+        }
+
+        /// <summary>
+        ///  Восстановить пользователя по id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <response code = "200"> Пользователь восстановлен </response>
+        /// <response code = "404"> Пользователь не найден </response>
+        /// <response code = "500"> Ошибка сервера </response>
+        /// <returns></returns>   
+        [HttpPut("isDeleted/{id}")]
+        [Authorize(Roles = "admin")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> RestoreUser(Guid id)
+        {
+            var isRestored = await _users.RestoreUser(id);
+
+            return isRestored ? Ok() : NotFound(new { errorMessage = "Проверьте id" });
+        }
+
+
+        /// <summary>
+        /// Получить список удаленных пользователей
+        /// </summary>
+        /// <response code = "200"> Список получен </response>
+        /// <response code = "404"> Данных нет </response>
+        /// <returns></returns>
+        [HttpGet("isDeleted")]
+        [Authorize(Roles = "admin")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<AccountDto>>> GetAllDeletedUsers()
+        {
+            var users = await _users.GetAllDeletedUsers();
+            List<AccountDto> usersDto = new List<AccountDto>();
+
+            foreach (var user in users)
+            {
+                usersDto.Add(new UserDto(user));
+            }
+
+            return Ok(usersDto);
         }
 
     }
 
 
 }
+
+
+
+
+
+

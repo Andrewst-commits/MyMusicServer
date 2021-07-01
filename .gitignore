@@ -9,3 +9,9 @@
 /Server/Server/obj
 /Server/Server/bin/Debug/net5.0
 /.vs
+/Server_nw/Server_nw/bin/Debug/net5.0
+/Server_nw/Server_nw/obj
+/Server_v1.1/.vs/Server_new_version
+/Server_v1.1/Server_v1.1/bin/Debug/net5.0
+/Server_v1.1/Server_v1.1/obj
+/Server_nw/.vs/Server_nw

@@ -9,25 +9,33 @@ using System.Threading.Tasks;
 namespace Server.Models
 {
     public class SongCreateDto
-    { // добавить XMl
+    { 
        
+        /// <summary>
+        /// название
+        /// </summary>
         [Required]
         [OnlyLatin(ErrMes = "Only latin letters")]
         [Length(MaxLen = 30, MinLen = 1, ErrMes = "Langth must be")]
         public string TitleDto { get; set; }
 
+        /// <summary>
+        /// длительность
+        /// </summary>
         [Required]
         [MyRange(MinNum = 0, MaxNum = 36000, ErrMes = "Duration (mc) must be")]
         public long DurationMsDto { get; set; }
 
+
+        /// <summary>
+        /// дата выпуска
+        /// </summary>
         [Required]
         public string ProductionDateDto { get; set; }
 
-        [Required]
-        [OnlyLatin(ErrMes = "Only latin letters")]
-        [Length(MaxLen = 30, MinLen = 1, ErrMes = "Langth must be")]
-        public string PerformerNickNameDto { get; set; }
-
+        /// <summary>
+        /// id исполнителя
+        /// </summary>
         [Required]
         public Guid PerformerIdDto  { get; set; }
 

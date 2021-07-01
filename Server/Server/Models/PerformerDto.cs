@@ -12,18 +12,15 @@ namespace Server.Models
     { 
        public PerformerDto(Performer performer)
        {
-            Name = performer.Name;
-            Surname = performer.Surname;
-            LastName = performer.LastName;
-            BirthDate = performer.BirthDate;
+            NickName = performer.NickName;
+            RegistrationDate = performer.RegistrationDate;
             Songs = performer.Songs
                 .Select(c => new SongDto(c))
                 .ToList();
        }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string LastName { get; set; }
-        public DateTime BirthDate { get; set; }
+       
+        public string NickName { get; set; }
+        public DateTime RegistrationDate { get; set; }
         public virtual List<SongDto> Songs { get; set; }
     }
 }

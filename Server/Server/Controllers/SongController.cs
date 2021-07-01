@@ -81,9 +81,8 @@ namespace Server.Controllers
         public async Task<ActionResult> AddSong([FromBody] SongCreateDto songCreateDto)
         {
             var isAdded = await _songs.AddSong(songCreateDto);
-            return isAdded ? Ok() : NotFound();   //как сделать так чтобы указать что не найден исполнитель
+            return isAdded ? Ok() : NotFound(new { errorMessage = "Исполнитель не зарегистрирован." });
         }
-
 
         /// <summary>
         /// Изменить информацию о песне
@@ -101,7 +100,7 @@ namespace Server.Controllers
         public async Task<ActionResult> UpdateSongInf(Guid id, [FromBody] SongCreateDto songCreateDto)
         { 
             var IsUpdated = await _songs.UpdateSong(id, songCreateDto);
-            return IsUpdated ? Ok() : NotFound();
+            return IsUpdated ? Ok() : NotFound(new { errorMessage = "Исполнитель не зарегистрирован." });
         }
 
         /// <summary>
@@ -123,6 +122,9 @@ namespace Server.Controllers
     }
 }
 
-// softDelete
+// получение по nickName
+// добавление при softDelete
 // конфликты при возникноении ошибок в отношения между сущностями 
 // MVP 
+// mapper
+// в больших приложения в репозиториях тоже можно возвращать Dto

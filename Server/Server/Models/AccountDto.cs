@@ -7,16 +7,17 @@ using System.Threading.Tasks;
 
 namespace Server.Models
 {
-    public class UserDto
+    public class AccountDto
     {
-        public UserDto(User user)
+        public AccountDto(Account user)
         {
             Name = user.Name;
             Surname = user.Surname;
             LastName = user.LastName;
             BirthDate = user.BirthDate;
-            Performers = user.Performers
-                .Select(c => new PerformerDto(c)) 
+            RoleId = user.RoleId;
+            Songs = user.Songs
+                .Select(c => new SongDto(c)) 
                 .ToList();
         }
 
@@ -24,6 +25,7 @@ namespace Server.Models
         public string Surname { get; set; }
         public string LastName { get; set; }
         public DateTime BirthDate { get; set; }
-        public virtual List<PerformerDto> Performers { get; set; }
+        public int? RoleId { get; set; }
+        public virtual List<SongDto> Songs { get; set; }
     }
 }
